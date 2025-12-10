@@ -1,0 +1,27 @@
+<?php
+
+use App\Http\Controllers\Authcontroller;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+
+// Route::get('/user', function (Request $request) {
+//     return $request->user();
+// })->middleware('auth:sanctum');
+
+Route :: post('register',[Authcontroller :: class ,'register']);
+Route :: post('login',[Authcontroller :: class ,'login']);
+
+Route :: group(
+    [
+        "middleware"=>["auth:sanctum"],
+    ],function(){
+        Route :: get('profile', [Authcontroller::class ,'profile']);
+        Route :: get('logout', [Authcontroller::class ,'logout']);
+    }
+);
+
+Route::middleware('auth:sanctum')->get('user', function (Request $request) {
+    return $request->user()->load('customer');
+});
+
