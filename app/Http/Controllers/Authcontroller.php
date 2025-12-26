@@ -70,7 +70,9 @@ class Authcontroller extends Controller
             'password' => 'required'
         ]);
 
-        $user = User::where('email', $request->email)->first();
+        $user = User::where('email', $request->email)
+            ->where('is_customers', true)
+            ->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json([
@@ -79,16 +81,16 @@ class Authcontroller extends Controller
             ], 401);
         }
 
-        // Create token
+
         $token = $user->createToken('customerToken')->plainTextToken;
 
-        // Load relationships
+
         $user->load('customer.address');
 
         return response()->json([
             'status' => true,
             'message' => 'Login successful',
-            'token' => $token,  // Return token in response
+            'token' => $token, 
             'user' => [
                 'id' => $user->id,
                 'name' => $user->name,
@@ -97,7 +99,6 @@ class Authcontroller extends Controller
             ]
         ], 200);
     }
-
 
     // Profile API 
     public function profile(Request $request)
@@ -126,15 +127,7 @@ class Authcontroller extends Controller
             "status" => true,
             "message" => "User logged out successfully"
         ], 200)->cookie(
-            'token',
-            '',
-            -1,  
-            '/',
-            null,
-            true,
-            true,
-            false,
-            'strict'
+            'token', '', -1,'/', null, true, true, false, 'strict'
         );
     }
 }

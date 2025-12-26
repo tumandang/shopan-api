@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Authcontroller;
+use App\Http\Controllers\CustomerController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -11,7 +12,6 @@ use Illuminate\Support\Facades\Route;
 
 Route :: post('register',[Authcontroller :: class ,'register']);
 Route :: post('login',[Authcontroller :: class ,'login']);
-
 Route :: group(
     [
         "middleware"=>["auth:sanctum"],
@@ -24,4 +24,6 @@ Route :: group(
 Route::middleware('auth:sanctum')->get('user', function (Request $request) {
     return $request->user()->load('customer');
 });
+
+Route::middleware('auth:sanctum')->put('profileupdate', [CustomerController::class,'editprofile']);
 
