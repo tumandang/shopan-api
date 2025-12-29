@@ -25,5 +25,5 @@ Route::middleware('auth:sanctum')->get('user', function (Request $request) {
     return $request->user()->load('customer');
 });
 
-Route::middleware('auth:sanctum')->put('profileupdate', [CustomerController::class,'editprofile']);
+Route::middleware('auth:sanctum')->put('profileupdate', [CustomerController::class,'editProfile']);
 
