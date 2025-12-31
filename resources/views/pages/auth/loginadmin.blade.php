@@ -82,11 +82,8 @@
                     </div>
 
                   
-                    <button 
-                        type="submit" 
-                        class="w-full bg-gradient-to-r from-brand to-brand-light text-white font-semibold py-4 rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-brand/40 active:translate-y-0 animate-fade-in opacity-0"
-                        style="animation-delay: 0.5s; animation-fill-mode: forwards;"
-                    >
+                    <button type="submit" class="w-full bg-gradient-to-r from-brand to-brand-light text-white font-semibold py-4 rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-brand/40 active:translate-y-0 animate-fade-in opacity-0"
+                        style="animation-delay: 0.5s; animation-fill-mode: forwards;" >
                         Sign In
                     </button>
                 </form>

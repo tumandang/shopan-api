@@ -12,63 +12,31 @@
 
     <div class="rounded-2xl bg-white p-6 shadow-sm">
 
-        <div class="mb-6 flex items-center justify-between">
-            {{-- Sort & Search --}}
-            <div class="flex items-center gap-3">
-                <button
-                    class="flex items-center gap-2 rounded-lg border border-slate-200 px-4 py-2 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-50">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="h-5 w-5">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75" />
-                    </svg>
-                    <span>Order By</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="h-4 w-4">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                    </svg>
-                </button>
-            </div>
-
-
-            <div class="relative">
-                <input type="text" placeholder="Search banners..."
-                    class="w-64 rounded-lg border border-slate-200 py-2 pl-10 pr-4 text-sm transition-colors focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                </svg>
-            </div>
-        </div>
-
-
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 
-<form id="bannerform" method="POST" action="{{ route('banner.upload') }}" enctype="multipart/form-data">
-    @csrf
-    <label for="add-banner" class="group relative flex min-h-[200px] cursor-pointer flex-col items-center justify-center gap-3 overflow-hidden rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 p-6 text-white shadow-lg transition-all hover:shadow-xl hover:-translate-y-1">
-        <div id="upload-icon" class="rounded-full bg-white/20 p-3 backdrop-blur-sm transition-transform group-hover:scale-110">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
-                stroke="currentColor" class="h-8 w-8">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-            </svg>
-        </div>
-        <span id="upload-text" class="text-lg font-semibold">Add New Slide</span>
-        <span class="text-xs opacity-90">Click to upload image</span>
-        
-        <input type="file" 
-               id="add-banner" 
-               name="banner_image" 
-               accept="image/*" 
-               class="hidden" 
-               onchange="handleUpload(this)">
-    </label>
-</form>
+            <form id="bannerform" method="POST" action="{{ route('banner.upload') }}" enctype="multipart/form-data">
+                @csrf
+                <label for="add-banner"
+                    class="group relative flex min-h-[200px] cursor-pointer flex-col items-center justify-center gap-3 overflow-hidden rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 p-6 text-white shadow-lg transition-all hover:shadow-xl hover:-translate-y-1">
+                    <div id="upload-icon"
+                        class="rounded-full bg-white/20 p-3 backdrop-blur-sm transition-transform group-hover:scale-110">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor" class="h-8 w-8">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                    </div>
+                    <span id="upload-text" class="text-lg font-semibold">Add New Slide</span>
+                    <span class="text-xs opacity-90">Click to upload image</span>
+
+                    <input type="file" id="add-banner" name="banner_image" accept="image/*" class="hidden"
+                        onchange="handleUpload(this)">
+                </label>
+            </form>
 
 
-            <div class="group relative flex min-h-[200px] flex-col items-center justify-center gap-3 overflow-hidden rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 p-6 transition-all hover:border-blue-400 hover:bg-blue-50/50">
+            <div
+                class="group relative flex min-h-[200px] flex-col items-center justify-center gap-3 overflow-hidden rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 p-6 transition-all hover:border-blue-400 hover:bg-blue-50/50">
                 <div class="rounded-full bg-slate-200 p-4 transition-colors group-hover:bg-blue-100">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="h-12 w-12 text-slate-500 group-hover:text-blue-500">
@@ -96,7 +64,8 @@
                 </div>
             </div>
 
-            <div class="group relative flex min-h-[200px] flex-col items-center justify-center gap-3 overflow-hidden rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 p-6 transition-all hover:border-blue-400 hover:bg-blue-50/50">
+            <div
+                class="group relative flex min-h-[200px] flex-col items-center justify-center gap-3 overflow-hidden rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 p-6 transition-all hover:border-blue-400 hover:bg-blue-50/50">
                 <div class="rounded-full bg-slate-200 p-4 transition-colors group-hover:bg-blue-100">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="h-12 w-12 text-slate-500 group-hover:text-blue-500">
@@ -124,7 +93,8 @@
                     </button>
                 </div>
             </div>
-            <div class="group relative flex min-h-[200px] flex-col items-center justify-center gap-3 overflow-hidden rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 p-6 transition-all hover:border-blue-400 hover:bg-blue-50/50">
+            <div
+                class="group relative flex min-h-[200px] flex-col items-center justify-center gap-3 overflow-hidden rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 p-6 transition-all hover:border-blue-400 hover:bg-blue-50/50">
                 <div class="rounded-full bg-slate-200 p-4 transition-colors group-hover:bg-blue-100">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="h-12 w-12 text-slate-500 group-hover:text-blue-500">
@@ -154,23 +124,29 @@
             </div>
 
         </div>
+        @if (session('success'))
+            <div class="mb-4 rounded-lg bg-green-100 p-4 text-green-800 mt-3">
+                {{ session('success') }}
+            </div>
+        @endif
     </div>
-<script>
-function handleUpload(input) {
-    if (input.files && input.files[0]) {
-       
-        document.getElementById('upload-text').textContent = 'Uploading...';
-        document.getElementById('upload-icon').innerHTML = `
+
+    <script>
+        function handleUpload(input) {
+            if (input.files && input.files[0]) {
+
+                document.getElementById('upload-text').textContent = 'Uploading...';
+                document.getElementById('upload-icon').innerHTML = `
             <svg class="animate-spin h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                 <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
             </svg>
         `;
-        
-     
-        document.getElementById('bannerform').submit();
-    }
-}
-</script>
+
+
+                document.getElementById('bannerform').submit();
+            }
+        }
+    </script>
 
 @endsection

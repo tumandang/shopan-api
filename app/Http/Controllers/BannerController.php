@@ -12,18 +12,24 @@ class BannerController extends Controller
         $banners = Banner::orderBy('position')->get();
         return view('pages.bannermanage.banner', compact('banners'));
     }
-    public function storebanner(Request $request){
+    public function storebanner(Request $request)
+    {
         $request->validate([
             'banner_image' => 'required|image|max:2048'
         ]);
-        $path = $request->file('banner_image')->store('banner','public');
 
-        $position = Banner::max('position') + 1;
+       
+        $path = $request->file('banner_image')->store('banner', 'public');
 
+        
+        $position = Banner::max('position') ? Banner::max('position') + 1 : 1;
+
+        
         Banner::create([
             'image' => $path,
             'position' => $position
         ]);
-        return back();
+
+        return back()->with('success', 'Banner uploaded successfully!');
     }
 }

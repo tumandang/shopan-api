@@ -7,9 +7,6 @@ export default {
   ],
   theme: {
     extend: {
-              fontFamily: { 'sora': ['Sora', 'sans-serif'],},
-                    colors: {'brand': '#FF8133',
-                        'brand-light': '#FF9A56', }
     },
   },
   plugins: [],
