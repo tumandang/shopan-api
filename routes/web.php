@@ -12,5 +12,6 @@ Route::get('/dashboard', function(){
 })->name('dashboard.show');
 Route::get('/banner', [BannerController::class , 'index'])->name('banner.index');
 Route::post('/banner', [BannerController::class , 'storebanner'])->name('banner.upload');
+Route::delete('/banner/delete/{banner_id}',[BannerController::class,'deletebanner'])->name('banner.delete');
 
 
