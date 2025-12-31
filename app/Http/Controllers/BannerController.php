@@ -49,4 +49,23 @@ class BannerController extends Controller
         }
         return redirect()->route('banner.index');
     }
+
+    public function getImage($id){
+        $image = Banner::find($id);
+        return response()->json([
+            'url' => asset('storage/'.$image->image),
+             'position' => $image->position,
+        ]);
+    }
+    public function getAllBanners()
+    {
+        $banners = Banner::orderBy('position', 'asc')->get()->map(function ($banner) {
+            return [
+                'url' => asset('storage/' . $banner->image), 
+                'position' => $banner->position,
+            ];
+        });
+
+        return response()->json($banners);
+    }
 }

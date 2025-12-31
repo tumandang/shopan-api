@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Authcontroller;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CustomerController;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -12,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 
 Route :: post('register',[Authcontroller :: class ,'register']);
 Route :: post('login',[Authcontroller :: class ,'login']);
+Route :: get('banner',[BannerController::class,'getAllBanners']);
+Route::get('/banner/{id}', [BannerController::class, 'getImage']);
 Route :: group(
     [
         "middleware"=>["auth:sanctum"],
