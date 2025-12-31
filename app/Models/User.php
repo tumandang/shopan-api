@@ -12,9 +12,9 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     public function customer()
-{
-    return $this->hasOne(customers::class);
-}
+    {
+        return $this->hasOne(customers::class);
+    }
 
     protected $fillable = [
         'name',
@@ -27,4 +27,8 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+    public function admin()
+    {
+        return $this->hasOne(Admin::class);
+    }
 }

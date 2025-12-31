@@ -8,7 +8,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
+use SebastianBergmann\FileIterator\Facade;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 class Authcontroller extends Controller
 {
     // Register API
@@ -129,5 +130,25 @@ class Authcontroller extends Controller
         ], 200)->cookie(
             'token', '', -1,'/', null, true, true, false, 'strict'
         );
+    }
+
+    public function loginadmin(){
+        return view('pages.auth.loginadmin');
+    }
+
+    public function loginmasuk( Request $request){
+        $request->validate([
+            'email'=>'email | required',
+            'password' => 'required'
+        ]);
+        $data = $request->only('email','password');
+
+       if ( FacadesAuth :: attempt($data)){
+            $request->session()->regenerate();
+            return redirect()->route('dashboard.show');
+       }
+       else{
+            return redirect()->back()->with('gagal', 'Email atau Password anda salah') ;
+       }
     }
 }

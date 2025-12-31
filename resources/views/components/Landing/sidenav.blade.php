@@ -26,7 +26,7 @@
          <ul class="flex flex-col pl-0 mb-0">
              <li class="mt-0.5 w-full">
                  <a class="my-2 mx-2 flex items-center gap-3 rounded-lg  px-4 py-3 font-semibold text-slate-700 transition-colors bg-[#EAEDFC]"
-                     href="/">
+                     href="/dashboard">
                      <div class="flex h-8 w-8 items-center justify-center rounded-lg ">
                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-blue-500"
                              xmlns="http://www.w3.org/2000/svg">

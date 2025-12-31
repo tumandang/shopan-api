@@ -6,7 +6,11 @@ export default {
     "./resources/**/*.vue",
   ],
   theme: {
-    extend: {},
+    extend: {
+              fontFamily: { 'sora': ['Sora', 'sans-serif'],},
+                    colors: {'brand': '#FF8133',
+                        'brand-light': '#FF9A56', }
+    },
   },
   plugins: [],
 }
