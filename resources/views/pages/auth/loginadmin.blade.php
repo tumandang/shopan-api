@@ -29,13 +29,21 @@
 
 <body class="bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen overflow-hidden">
     <div class="grid lg:grid-cols-2 min-h-screen">
-
+        <div class=" lg:flex items-center justify-center ">
+            <div class="w-full h-full  rounded-r-3xl overflow-hidden  group">
+                <img 
+                    src="./img/loginshopan.png" 
+                    alt="Shopan Admin Dashboard Preview" 
+                    class="w-full h-full object-cover  scale-125"
+                />
+            </div>
+        </div>
         <div class="flex items-center justify-center px-8 py-12 lg:px-16">
             <div class="w-full max-w-md space-y-8">
       
                 <div class="animate-fade-in opacity-0" style="animation-delay: 0.1s; animation-fill-mode: forwards;">
                     <div class="inline-block px-4 py-2 bg-brand bg-opacity-10 rounded-full mb-4">
-                        <span class="text-brand font-semibold text-sm tracking-wide">ADMIN PORTAL</span>
+                        <span class="text-brand font-semibold text-sm tracking-wide">ADMIN SHOPAN PORTAL</span>
                     </div>
                     <h1 class="text-4xl font-bold text-gray-900 mb-2">Welcome Back</h1>
                     <p class="text-gray-500 text-base">Sign in to manage your dashboard</p>
@@ -68,20 +76,7 @@
                             required
                         />
                     </div>
-
-                
-                    <div class="flex items-center animate-fade-in opacity-0" style="animation-delay: 0.4s; animation-fill-mode: forwards;">
-                        <input 
-                            id="remember" 
-                            type="checkbox" 
-                            class="w-4 h-4 rounded border-gray-300 text-brand focus:ring-brand focus:ring-offset-0"
-                        />
-                        <label for="remember" class="ml-2 text-sm text-gray-600">
-                            Keep me signed in
-                        </label>
-                    </div>
-
-                  
+               
                     <button type="submit" class="w-full bg-gradient-to-r from-brand to-brand-light text-white font-semibold py-4 rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-brand/40 active:translate-y-0 animate-fade-in opacity-0"
                         style="animation-delay: 0.5s; animation-fill-mode: forwards;" >
                         Sign In
@@ -101,15 +96,7 @@
         </div>
 
        
-        <div class="hidden lg:flex items-center justify-center  p-12">
-            <div class="w-full h-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl group">
-                <img 
-                    src="./img/loginshopan.png" 
-                    alt="Shopan Admin Dashboard Preview" 
-                    class="w-full h-full object-cover  scale-125"
-                />
-            </div>
-        </div>
+
     </div>
 
     <style>

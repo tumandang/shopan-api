@@ -151,4 +151,6 @@ class Authcontroller extends Controller
             return redirect()->back()->with('gagal', 'Email atau Password anda salah') ;
        }
     }
+
+
 }

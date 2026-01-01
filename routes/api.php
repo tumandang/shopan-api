@@ -3,6 +3,7 @@
 use App\Http\Controllers\Authcontroller;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\RequestController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,7 @@ Route :: group(
         "middleware"=>["auth:sanctum"],
     ],function(){
         Route :: get('profile', [Authcontroller::class ,'profile']);
+        Route :: post('requestproduct',[RequestController::class , 'RequestAPI']);
         Route :: get('logout', [Authcontroller::class ,'logout']);
     }
 );

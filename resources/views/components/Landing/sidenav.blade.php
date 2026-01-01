@@ -42,7 +42,7 @@
 
              <li class="mt-0.5 w-full">
                  <a class="my-2 mx-2 flex items-center gap-3 rounded-lg bg-blue-500/13 px-4 py-3 font-semibold text-slate-700 transition-colors "
-                     href="/">
+                     href="/request">
                      <div class="flex h-8 w-8 items-center justify-center rounded-lg ">
                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="text-[#FB6340]"
                              xmlns="http://www.w3.org/2000/svg">
@@ -129,8 +129,12 @@
              class="inline-block w-full px-8 py-2 mb-4 text-xs font-bold leading-normal text-center text-white capitalize transition-all ease-in rounded-lg shadow-md bg-slate-700 bg-150 hover:shadow-xs hover:-translate-y-px">Shopan
              User Manual</a>
 
-         <a class="inline-block w-full px-8 py-2 text-xs font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-red-500 border-0 rounded-lg shadow-md select-none bg-150 bg-x-25 hover:shadow-xs hover:-translate-y-px"
-             href="https://www.creative-tim.com/product/argon-dashboard-pro-tailwind?ref=sidebarfree"
-             >Logout</a>
+         <form method="POST" action="{{ route('logout.admin') }}">
+            @csrf
+            <button type="submit" class="inline-block w-full px-8 py-2 text-xs font-bold leading-normal text-center text-white align-middle transition-all ease-in bg-red-500 border-0 rounded-lg shadow-md select-none bg-150 bg-x-25 hover:shadow-xs hover:-translate-y-px">
+                Logout
+            </button>
+         </form>
+
      </div>
  </aside>
