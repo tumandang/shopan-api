@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('model')->nullable();
             $table->string('product_image')->nullable();
             $table->longText('customer_notes')->nullable();
+            $table->enum('status', ['new', 'quoted', 'pending_payment', 'paid', 'processing', 'completed', 'cancelled'])->default('new');
             $table->longText('admin_notes')->nullable();
             $table->timestamps();
         });
