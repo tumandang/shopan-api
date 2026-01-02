@@ -160,13 +160,15 @@
                                                             </svg>
                                                         </button>
 
-                                                        <a href="/"
-                                                            class="p-2 bg-green-100 hover:bg-green-200 text-green-600 rounded-lg transition-colors"
+                                                        <button  onclick="openQouteModal({{ json_encode($requestproduct) }})" class="p-2 bg-green-100 hover:bg-green-200 text-green-600 rounded-lg transition-colors"
                                                             title="Quote Price">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m1.5 9 2.25 3m0 0 2.25-3m-2.25 3v4.5M9.75 15h4.5m-4.5 2.25h4.5m-3.75-15H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4"
+                                                                fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                                                stroke="currentColor" class="size-6">
+                                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                                    d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m1.5 9 2.25 3m0 0 2.25-3m-2.25 3v4.5M9.75 15h4.5m-4.5 2.25h4.5m-3.75-15H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
                                                             </svg>
-                                                        </a>
+                                                        </button>
 
                                                         <a href="/"
                                                             class="p-2 bg-red-100 hover:bg-red-200 text-red-600 rounded-lg transition-colors"
@@ -230,6 +232,74 @@
         </div>
     </div>
 
+    <div id="qoute-modal" class=" hidden fixed inset-0 bg-gray-900 bg-opacity-50 z-50 flex items-center justify-center">
+        <div class=" bg-white rounded-2xl shadow-2xl w-full max-w-3xl mx-4 max-h-[90vh] overflow-y-auto">
+
+            <div class="bg-green-500 p-6 rounded-t-2xl">
+                <div class="flex justify-between items-center">
+                    <div class="">
+                        <h2 class="text-2xl font-bold text-white">Qoute Price Form</h2>
+                        <p class="text-blue-100 text-sm mt-1">Fill the qoute price form to inform the customer</p>
+                    </div>
+                    <button onclick="closeViewModal()"
+                    class="text-white hover:bg-white/20 rounded-lg p-2 transition-colors">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                            stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="p-6 space-y-6">
+                <div class="border border-slate-200 rounded-lg p-4 ">
+                    <h3 class="text-sm font-semibold text-slate-700 uppercase tracking-wide mb-3 flex items-center">
+                        <svg class="w-4 h-4 mr-2 text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m1.5 9 2.25 3m0 0 2.25-3m-2.25 3v4.5M9.75 15h4.5m-4.5 2.25h4.5m-3.75-15H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                        </svg>
+
+                        Request Details
+                    </h3>
+                    <div class=" grid grid-flow-col grid-cols-2 gap-4">
+                        <div class="row-span-3 border-2 border-dashed border-slate-300 bg-slate-100 p-4 rounded-lg flex justify-center items-center gap-x-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" class=" w-6 h-6" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+                            </svg>
+                            <p>No Image</p>
+                        </div>
+                        <div class="bg-slate-100 p-4 rounded-lg ">
+                            <p class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">Request Name</p>
+                            <p class="text-xs font-medium text-slate-900" id="modal-request-name">-</p>
+                        </div>
+                        <div class="bg-slate-100 p-4 rounded-lg ">
+                            <p class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">Market</p>
+                            <p class="text-xs font-medium text-slate-900" id="modal-request-market">-</p>
+                        </div>
+                        <div class="bg-slate-100 p-4 rounded-lg col-span-3">
+                            <p class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">Customer Notes</p>
+                            <p class="text-xs font-medium text-slate-900" id="modal-request-notes-c">-</p>
+                            
+                        </div>
+                        <div class="bg-slate-100 p-4 rounded-lg col-span-2 ">
+                            <p class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">Product Url</p>
+                            <a href="" target="_blank" class="text-xs font-medium text-slate-900 italic underline" id="modal-request-url">Click This Link</a>
+                            
+                        </div>
+                        <div class="bg-slate-100 p-4 rounded-lg col-span-2 ">
+                            <p class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">Quantity</p>
+                            <span id="modal-request-quantity"
+                                class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">New</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div id="view-modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-3xl mx-4 max-h-[90vh] overflow-y-auto">
@@ -310,14 +380,15 @@
                             </h3>
                         </div>
                         <div>
-                            <a href='-' target="_blank" id="modal-produt-url" class=" px-4 py-2 bg-[#FF8133] bg-opacity-10 rounded-full mb-4 flex flex-row items-center justify-center gap-x-2">
-                                
+                            <a href='-' target="_blank" id="modal-produt-url"
+                                class=" px-4 py-2 bg-[#FF8133] bg-opacity-10 rounded-full mb-4 flex flex-row items-center justify-center gap-x-2">
+
                                 <svg xmlns="http://www.w3.org/2000/svg" class="text-[#FF9A56] w-4 h-4" fill="none"
-                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" >
+                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+                                        d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
                                 </svg>
-                                <span class="text-[#FF9A56] font-semibold text-sm tracking-wide">Product's Link</span>
+                                <span class="text-[#FF9A56] font-semibold text-sm tracking-wide">Product URL</span>
                             </a>
 
                         </div>
@@ -389,7 +460,7 @@
             document.getElementById('modal-customer-email').textContent = request.user.email || 'N/A';
             document.getElementById('modal-product-name').textContent = request.product_name;
             document.getElementById('modal-market-name').textContent = request.market_name;
-            document.getElementById('modal-produt-url').setAttribute('href',request.product_url) ;
+            document.getElementById('modal-produt-url').setAttribute('href', request.product_url);
             document.getElementById('modal-quantity').textContent = request.quantity;
             document.getElementById('modal-price').textContent = '¥' + parseFloat(request.product_price).toLocaleString(
                 'en-US', {
@@ -421,10 +492,21 @@
 
 
             document.getElementById('view-modal').classList.remove('hidden');
+            
         }
 
         function closeViewModal() {
             document.getElementById('view-modal').classList.add('hidden');
+            document.getElementById('qoute-modal').classList.add('hidden');
+        }
+
+        function openQouteModal(request){
+            document.getElementById('modal-request-name').textContent = request.product_name;
+            document.getElementById('modal-request-market').textContent = request.market_name;
+            document.getElementById('modal-request-quantity').textContent = request.quantity;
+            document.getElementById('modal-request-url').setAttribute('href', request.product_url);
+            document.getElementById('modal-request-notes-c').textContent = request.customer_notes || 'None';
+            document.getElementById('qoute-modal').classList.remove('hidden');
         }
 
 

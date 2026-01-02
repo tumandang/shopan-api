@@ -23,7 +23,7 @@
         <div class="flex items-start justify-between">
             <div class="flex-1">
                 <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">
-                    Today's Users
+                    Total Users
                 </p>
                 <h3 class="mt-2 text-3xl font-bold text-slate-800">2,300</h3>
             </div>
@@ -42,7 +42,7 @@
         <div class="flex items-start justify-between">
             <div class="flex-1">
                 <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">
-                    New Clients
+                    New Requests
                 </p>
                 <h3 class="mt-2 text-3xl font-bold text-slate-800">+3,462</h3>
             </div>
