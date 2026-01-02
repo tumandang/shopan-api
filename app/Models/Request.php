@@ -19,6 +19,9 @@ class Request extends Model
         'product_image',
         'customer_notes',
         'admin_notes',
+        'service_fee',
+        'domestic_shipping',
+        'quoted_total'
     ];
 
     public function user() {

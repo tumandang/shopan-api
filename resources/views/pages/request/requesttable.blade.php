@@ -13,8 +13,7 @@
     <div class="w-full mx-auto">
         <div class="flex flex-wrap -mx-3">
             <div class="flex-none w-full max-w-full px-3">
-                <div
-                    class="relative flex flex-col min-w-0 mb-6 break-words bg-white border border-slate-200 shadow-lg rounded-2xl">
+                <div class="relative flex flex-col min-w-0 mb-6 break-words bg-white border border-slate-200 shadow-lg rounded-2xl">
                     <div class="p-6 pb-4 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-white rounded-t-2xl">
                         <div class="flex items-center justify-between">
                             <h5 class="text-xl font-semibold text-slate-800">Request Table</h5>

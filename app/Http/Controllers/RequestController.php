@@ -37,4 +37,9 @@ class RequestController extends Controller
             'data'    => $requestProduct
         ]);
     }
+
+    public function updateRequest(Request $request){
+      
+
+    }
 }
