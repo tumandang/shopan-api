@@ -16,6 +16,7 @@ class Request extends Model
         'size',
         'color',
         'model',
+        'status',
         'product_image',
         'customer_notes',
         'admin_notes',

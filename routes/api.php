@@ -22,6 +22,7 @@ Route :: group(
     ],function(){
         Route :: get('profile', [Authcontroller::class ,'profile']);
         Route :: post('requestproduct',[RequestController::class , 'RequestAPI']);
+        Route :: get('listrequest',[RequestController::class , 'FetchRequest']);
         Route :: get('logout', [Authcontroller::class ,'logout']);
     }
 );

@@ -21,8 +21,9 @@ Route::post('/banner', [BannerController::class , 'storebanner'])->name('banner.
 Route::delete('/banner/delete/{banner_id}',[BannerController::class,'deletebanner'])->name('banner.delete');
 
 //requests
-Route::get('/request', [RequestController::class , 'index'])->name('banner.index');
-
+Route::get('/request', [RequestController::class , 'index'])->name('request.index');
+Route::put('/request-update', [RequestController::class, 'updateRequest']) ->name('request.update');
+Route::delete('/request/{id}', [RequestController::class, 'deleteRequest'])->name('request.delete');
 
 //logout
 Route::post('/logout',function(){

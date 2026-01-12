@@ -17,8 +17,11 @@
         </div>
 
         <div class="p-6 space-y-6">
-            <form action="">
-                <div class="border border-slate-200 rounded-lg p-4 ">
+            <form method="POST"  action="{{ route('request.update') }}">
+                @csrf
+                @method('PUT')
+                <input type="hidden" name="request_id" value="{{ $requestproduct->id }}">
+                <div class="border border-slate-200 rounded-lg p-4 mb-3">
                     <h3 class="text-sm font-semibold text-slate-700 uppercase tracking-wide mb-3 flex items-center">
                         <svg class="w-4 h-4 mr-2 text-orange-600 " xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -87,7 +90,7 @@
                                 </label>
                                 <div class="relative">
                                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">¥</span>
-                                    <input type="number" name="japan_shipping" placeholder="800" id="domestic-ship" class="w-full pl-8 pr-4 py-2.5 border border-gray-300 rounded-lg  focus:border-transparent transition">
+                                    <input type="number" name="domestic_shipping" placeholder="800" id="domestic-ship" class="w-full pl-8 pr-4 py-2.5 border border-gray-300 rounded-lg  focus:border-transparent transition">
                                 </div>
                             </div>
                             <div class="space-y-2">
@@ -96,25 +99,15 @@
                                 </label>
                                 <div class="relative">
                                     <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">¥</span>
-                                    <input type="number" name="proxy_fee" placeholder="800" id="proxy-fee"
+                                    <input type="number" name="service_fee" placeholder="800" id="proxy-fee"
                                         class="w-full pl-8 pr-4 py-2.5 border border-gray-300 rounded-lg  focus:border-transparent transition">
                                 </div>
                             </div>
                             <div class="space-y-2 md:col-span-2">
-                                <label class="block text-sm font-medium text-gray-700">
-                                    Inspection / Packing Fee
-                                </label>
-                                <div class="relative">
-                                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">¥</span>
-                                    <input type="number" name="packing_fee" placeholder="1800" id="packing-fee"
-                                        class="w-full pl-8 pr-4 py-2.5 border border-gray-300 rounded-lg  focus:border-transparent transition">
-                                </div>
-                            </div>
-                            <div class="space-y-2 md:col-span-2">
-                                <label for="message" class="block mb-2.5 text-sm font-medium text-heading">
+                                <label for="admin_notes" class="block mb-2.5 text-sm font-medium text-heading">
                                     Your Message to Customers
                                 </label>
-                                <textarea id="message" rows="4"
+                                <textarea id="admin_notes" name="admin_notes" rows="4"
                                     class="bg-neutral-secondary-medium border rounded-xl border-default-medium text-heading
                                     text-sm rounded-base focus:ring-brand focus:border-brand block w-full p-3.5
                                     shadow-xs placeholder:text-body" placeholder="Left a notes for customer...">
@@ -133,10 +126,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex justify-end gap-x-4">
-                    <button class="bg-blue-500 rounded-xl p-4 text-white font-semibold">Close</button>
+                <div class="flex justify-end gap-x-4 mt-4">
                     <button type="submit" class="bg-green-500 rounded-xl p-4 text-white font-semibold">Send Qoute Price</button>
                 </div>
+                @if (session('success'))
+                    <div class="mb-4 rounded-lg bg-green-100 p-4 text-green-800 mt-3">
+                        {{ session('success') }}
+                    </div>
+                @endif
             </form>
         </div>
     </div>

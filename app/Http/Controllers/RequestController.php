@@ -39,7 +39,37 @@ class RequestController extends Controller
     }
 
     public function updateRequest(Request $request){
-      
+        $data = $request->validate([
+            'service_fee' => 'required|numeric|min:0' ,
+            'domestic_shipping' => 'required|numeric|min:0',
+            'admin_notes' => 'nullable|string|max:1000'
+        ]);
+        $requestProduct = ModelsRequest::findOrFail($request->request_id);
+        $quotedTotal = ($requestProduct->product_price * $requestProduct->quantity) + $data['service_fee'] + $data['domestic_shipping'];
+        $requestProduct->update([
+            'status' => 'quoted',
+            'service_fee' => $request->service_fee,
+            'domestic_shipping' => $request->domestic_shipping,
+            'quoted_total' => $quotedTotal,
+            'admin_notes' => $request->admin_notes,
+        ]);
+        return back()->with('success', 'Price quoted successfully');
+    }
+    public function deleteRequest($request_id){
+        ModelsRequest::findOrFail($request_id)->delete();
+        
+        return redirect()->route('request.index')
+            ->with('success', 'Request deleted successfully');
+    }
 
+  public function FetchRequest(Request $request)
+    {
+            $ListRequest = ModelsRequest::all();
+            
+            return response()->json([
+                'status' => true,
+                'request' => $ListRequest
+            ]);
+            
     }
 }

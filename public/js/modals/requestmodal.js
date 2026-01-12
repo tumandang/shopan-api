@@ -59,7 +59,7 @@
 
             updateEstimatePrice(request);
 
-            ['proxy-fee','domestic-ship','packing-fee'].forEach(id=>{
+            ['proxy-fee','domestic-ship'].forEach(id=>{
                 document.getElementById(id).addEventListener('input', ()=> updateEstimatePrice(request));
             });
 
@@ -69,15 +69,16 @@
             document.getElementById('qoute-modal').classList.remove('hidden');
         }
 
+        
+
         function updateEstimatePrice(request) {
             const proxyfee = parseFloat(document.getElementById('proxy-fee').value) || 0;
             const shippingdos = parseFloat(document.getElementById('domestic-ship').value) || 0;
-            const packing = parseFloat(document.getElementById('packing-fee').value) || 0;
             const quantity = parseFloat(request.quantity) || 0;
             const productPrice = parseFloat(request.product_price) || 0;
 
             const total = quantity * productPrice;
-            const estimateprice = total + proxyfee + shippingdos + packing;
+            const estimateprice = total + proxyfee + shippingdos;
 
             document.getElementById('estimate_price').textContent = '¥ ' + estimateprice.toLocaleString('en-US', {
                 minimumFractionDigits: 2,
