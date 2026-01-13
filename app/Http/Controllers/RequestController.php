@@ -55,6 +55,18 @@ class RequestController extends Controller
         ]);
         return back()->with('success', 'Price quoted successfully');
     }
+    public function rejectRequest(Request $request){
+
+        $request->validate(
+            ['admin_notes' => 'nullable|string|max:1000']
+        );
+        $requestProduct = ModelsRequest::findOrFail($request->request_id);
+        $requestProduct->update([
+            'status' => 'cancelled',
+            'admin_notes' => $request->admin_notes,
+        ]);
+        return back()->with('success', 'Request reject successfully');
+    }
     public function deleteRequest($request_id){
         ModelsRequest::findOrFail($request_id)->delete();
         

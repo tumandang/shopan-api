@@ -43,6 +43,7 @@
         function closeViewModal() {
             document.getElementById('view-modal').classList.add('hidden');
             document.getElementById('qoute-modal').classList.add('hidden');
+            document.getElementById('reject-modal').classList.add('hidden');
         }
 
         function openQouteModal(request){
@@ -62,11 +63,11 @@
             ['proxy-fee','domestic-ship'].forEach(id=>{
                 document.getElementById(id).addEventListener('input', ()=> updateEstimatePrice(request));
             });
-
-            
-
-
             document.getElementById('qoute-modal').classList.remove('hidden');
+        }
+
+        function openRejectModal(request){
+            document.getElementById('reject-modal').classList.remove('hidden');
         }
 
         
@@ -76,7 +77,6 @@
             const shippingdos = parseFloat(document.getElementById('domestic-ship').value) || 0;
             const quantity = parseFloat(request.quantity) || 0;
             const productPrice = parseFloat(request.product_price) || 0;
-
             const total = quantity * productPrice;
             const estimateprice = total + proxyfee + shippingdos;
 

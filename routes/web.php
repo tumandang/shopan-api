@@ -23,6 +23,7 @@ Route::delete('/banner/delete/{banner_id}',[BannerController::class,'deletebanne
 //requests
 Route::get('/request', [RequestController::class , 'index'])->name('request.index');
 Route::put('/request-update', [RequestController::class, 'updateRequest']) ->name('request.update');
+Route::put('/request-reject',[RequestController::class,'rejectRequest'])->name('request.reject');
 Route::delete('/request/{id}', [RequestController::class, 'deleteRequest'])->name('request.delete');
 
 //logout
