@@ -46,11 +46,13 @@ class RequestController extends Controller
         ]);
         $requestProduct = ModelsRequest::findOrFail($request->request_id);
         $quotedTotal = ($requestProduct->product_price * $requestProduct->quantity) + $data['service_fee'] + $data['domestic_shipping'];
+        $totalMyr = 0.02545 * $quotedTotal;
         $requestProduct->update([
             'status' => 'quoted',
             'service_fee' => $request->service_fee,
             'domestic_shipping' => $request->domestic_shipping,
             'quoted_total' => $quotedTotal,
+            'total_myr' => $totalMyr,
             'admin_notes' => $request->admin_notes,
         ]);
         return back()->with('success', 'Price quoted successfully');
@@ -62,16 +64,34 @@ class RequestController extends Controller
         );
         $requestProduct = ModelsRequest::findOrFail($request->request_id);
         $requestProduct->update([
-            'status' => 'cancelled',
+            'status' => 'reject',
             'admin_notes' => $request->admin_notes,
         ]);
         return back()->with('success', 'Request reject successfully');
+    }
+    public function cancelRequest(Request $request) {
+        $id = $request->input('request_id');
+        $requestProduct = ModelsRequest::findOrFail($id);
+        $requestProduct->update(['status' => 'cancelled']);
+        return response()->json(['status' => true, 'message' => 'Cancelled']);
+    }
+    public function acceptRequest(Request $request) {
+        $id = $request->input('request_id');
+        $requestProduct = ModelsRequest::findOrFail($id);
+        $requestProduct->update(['status' => 'pending_payment']);
+        return response()->json(['status' => true, 'message' => 'Accepted']);
     }
     public function deleteRequest($request_id){
         ModelsRequest::findOrFail($request_id)->delete();
         
         return redirect()->route('request.index')
             ->with('success', 'Request deleted successfully');
+    }
+    public function deleteRequestAPI(Request $request){
+
+        $id = $request->input('request_id');
+        ModelsRequest::findOrFail($id)->delete();
+        return response()->json(['status' => true, 'message' => 'Deleted']);
     }
 
   public function FetchRequest(Request $request)

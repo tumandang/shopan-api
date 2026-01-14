@@ -24,11 +24,12 @@ return new class extends Migration
             $table->string('model')->nullable();
             $table->string('product_image')->nullable();
             $table->longText('customer_notes')->nullable();
-            $table->enum('status', ['new', 'quoted', 'pending_payment', 'paid', 'processing', 'completed', 'cancelled'])->default('new');
+            $table->enum('status', ['new', 'quoted', 'reject', 'pending_payment', 'paid', 'processing', 'completed', 'cancelled'])->default('new');
             $table->longText('admin_notes')->nullable();
             $table->decimal('service_fee', 10, 2)->nullable();        
             $table->decimal('domestic_shipping', 10, 2)->nullable();     
             $table->decimal('quoted_total', 10, 2)->nullable();
+            $table->decimal('total_myr', 10, 2)->nullable();
             $table->timestamps();
         });
     }

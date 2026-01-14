@@ -23,6 +23,9 @@ Route :: group(
         Route :: get('profile', [Authcontroller::class ,'profile']);
         Route :: post('requestproduct',[RequestController::class , 'RequestAPI']);
         Route :: get('listrequest',[RequestController::class , 'FetchRequest']);
+        Route :: post('requestcancel',[RequestController::class , 'cancelRequest']);
+        Route :: post('requestaccept',[RequestController::class , 'acceptRequest']);
+        Route :: post('requestdelete',[RequestController::class , 'deleteRequestAPI']);
         Route :: get('logout', [Authcontroller::class ,'logout']);
     }
 );

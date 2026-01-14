@@ -21,6 +21,7 @@ class Request extends Model
         'customer_notes',
         'admin_notes',
         'service_fee',
+        'total_myr',
         'domestic_shipping',
         'quoted_total'
     ];
