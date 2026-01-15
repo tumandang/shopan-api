@@ -4,6 +4,7 @@ use App\Http\Controllers\Authcontroller;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\RequestController;
+use App\Http\Controllers\StripeController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,7 @@ Route :: group(
         Route :: post('requestcancel',[RequestController::class , 'cancelRequest']);
         Route :: post('requestaccept',[RequestController::class , 'acceptRequest']);
         Route :: post('requestdelete',[RequestController::class , 'deleteRequestAPI']);
+        Route::post('stripe/checkout', [StripeController::class, 'createCheckout']);
         Route :: get('logout', [Authcontroller::class ,'logout']);
     }
 );

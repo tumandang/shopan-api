@@ -3,6 +3,7 @@
 use App\Http\Controllers\Authcontroller;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\RequestController;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,11 @@ Route::get('/request', [RequestController::class , 'index'])->name('request.inde
 Route::put('/request-update', [RequestController::class, 'updateRequest']) ->name('request.update');
 Route::put('/request-reject',[RequestController::class,'rejectRequest'])->name('request.reject');
 Route::delete('/request/{id}', [RequestController::class, 'deleteRequest'])->name('request.delete');
+
+//stripe
+
+
+
 
 //logout
 Route::post('/logout',function(){
