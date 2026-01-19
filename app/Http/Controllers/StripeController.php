@@ -11,7 +11,7 @@ class StripeController extends Controller
 {
     public function createCheckout(Request $request)
     {
-      
+
         $request->validate([
             'request_id' => 'required|exists:requests,id',
         ]);
@@ -30,6 +30,12 @@ class StripeController extends Controller
         $session = Session::create([
             'payment_method_types' => ['card', 'fpx'],
             'mode' => 'payment',
+            'payment_intent_data' => [
+                'metadata' => [
+                    'request_id' => $requestProduct->id,
+                    'user_id' => $requestProduct->user_id,
+                ],
+            ],
             'line_items' => [[
                 'price_data' => [
                     'currency' => 'myr',
@@ -45,12 +51,11 @@ class StripeController extends Controller
                 'user_id' => $requestProduct->user_id,
             ],
             'success_url' => "http://localhost:3000/{$locale}/payment/success?session_id={CHECKOUT_SESSION_ID}",
-             'cancel_url'  => "http://localhost:3000/{$locale}/payment/cancel",
+            'cancel_url'  => "http://localhost:3000/{$locale}/payment/cancel",
         ]);
 
         return response()->json([
             'checkout_url' => $session->url
         ]);
     }
-
 }

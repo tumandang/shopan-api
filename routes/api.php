@@ -5,6 +5,7 @@ use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\StripeController;
+use App\Http\Controllers\StripeWebhookController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +18,7 @@ Route :: post('register',[Authcontroller :: class ,'register']);
 Route :: post('login',[Authcontroller :: class ,'login']);
 Route :: get('banner',[BannerController::class,'getAllBanners']);
 Route::get('/banner/{id}', [BannerController::class, 'getImage']);
+Route::post('/stripe/webhook', [StripeWebhookController::class , 'handle']);
 Route :: group(
     [
         "middleware"=>["auth:sanctum"],
@@ -28,6 +30,7 @@ Route :: group(
         Route :: post('requestaccept',[RequestController::class , 'acceptRequest']);
         Route :: post('requestdelete',[RequestController::class , 'deleteRequestAPI']);
         Route::post('stripe/checkout', [StripeController::class, 'createCheckout']);
+
         Route :: get('logout', [Authcontroller::class ,'logout']);
     }
 );
