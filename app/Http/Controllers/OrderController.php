@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class OrderController extends Controller
 {
     public function FetchOrder(){
-        $ListOrder = Order::all();
+        $ListOrder = Order::with('request')->get(); 
 
         return response()->json([
                 'status' => true,

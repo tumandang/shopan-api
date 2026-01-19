@@ -40,8 +40,6 @@ class StripeWebhookController extends Controller
                 Log::warning('Request not found', ['request_id' => $intent->metadata->request_id]);
                 return response()->json(['ok' => true]);
             }
-
-            
             $requestProduct->update(['status' => 'paid']);
 
        
@@ -52,7 +50,7 @@ class StripeWebhookController extends Controller
                 'payment_intent_id' => $intent->id,
                 'checkout_session_id' => $intent->latest_charge ?? null,
                 'amount_myr' => $requestProduct->total_myr,
-                'status' => 'paid',
+                
             ]);
 
             Log::info('Request marked as paid and order created', [
