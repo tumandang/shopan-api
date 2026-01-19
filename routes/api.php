@@ -3,6 +3,7 @@
 use App\Http\Controllers\Authcontroller;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\StripeWebhookController;
@@ -30,7 +31,7 @@ Route :: group(
         Route :: post('requestaccept',[RequestController::class , 'acceptRequest']);
         Route :: post('requestdelete',[RequestController::class , 'deleteRequestAPI']);
         Route::post('stripe/checkout', [StripeController::class, 'createCheckout']);
-
+        Route ::get('listorder',[OrderController::class , 'FetchOrder']);
         Route :: get('logout', [Authcontroller::class ,'logout']);
     }
 );
