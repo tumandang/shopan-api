@@ -50,7 +50,7 @@ class StripeWebhookController extends Controller
                 'payment_intent_id' => $intent->id,
                 'checkout_session_id' => $intent->latest_charge ?? null,
                 'amount_myr' => $requestProduct->total_myr,
-                
+                'status' => 'processing'
             ]);
 
             Log::info('Request marked as paid and order created', [
