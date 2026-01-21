@@ -140,10 +140,6 @@
                     class="px-6 py-2.5 bg-slate-200 hover:bg-slate-300 text-slate-700 font-medium rounded-lg transition-colors">
                     Close
                 </button>
-                <button
-                    class="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors">
-                    Take Action
-                </button>
             </div>
         </div>
     </div>

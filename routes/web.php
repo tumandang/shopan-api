@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Authcontroller;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RequestController;
 
 use Illuminate\Support\Facades\Auth;
@@ -29,7 +30,9 @@ Route::delete('/request/{id}', [RequestController::class, 'deleteRequest'])->nam
 
 //stripe
 
-
+//
+Route::get('/invoice/{order_id}',[OrderController::class,'viewInvoice']);
+Route::get('/invoice/{order_id}/generate',[OrderController::class,'generateInvoice']);
 
 
 //logout
