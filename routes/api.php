@@ -3,6 +3,7 @@
 use App\Http\Controllers\Authcontroller;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\MarketplaceController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\StripeController;
@@ -19,6 +20,7 @@ Route :: post('register',[Authcontroller :: class ,'register']);
 Route :: post('login',[Authcontroller :: class ,'login']);
 Route :: get('banner',[BannerController::class,'getAllBanners']);
 Route::get('/banner/{id}', [BannerController::class, 'getImage']);
+Route ::get('marketplace',[MarketplaceController::class , 'fetchMarketplace']);
 Route::post('/stripe/webhook', [StripeWebhookController::class , 'handle']);
 Route :: group(
     [
@@ -27,6 +29,7 @@ Route :: group(
         Route :: get('profile', [Authcontroller::class ,'profile']);
         Route :: post('requestproduct',[RequestController::class , 'RequestAPI']);
         Route :: get('listrequest',[RequestController::class , 'FetchRequest']);
+        Route::get('request/{id}', [RequestController::class, 'detailRequest']);
         Route :: post('requestcancel',[RequestController::class , 'cancelRequest']);
         Route :: post('requestaccept',[RequestController::class , 'acceptRequest']);
         Route :: post('requestdelete',[RequestController::class , 'deleteRequestAPI']);

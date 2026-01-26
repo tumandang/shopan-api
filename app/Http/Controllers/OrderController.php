@@ -18,6 +18,11 @@ class OrderController extends Controller
         ]);
     }
 
+    public function index(){
+        $orderproducts = Order::with('request')->latest()->get();
+        return view('pages.order.ordertable', compact('orderproducts'));
+    }
+
     public function viewInvoice(int $order_id){
         $order = Order::findOrFail($order_id);
         return view('pages.request.invoice.generate-invoice', compact('order'));

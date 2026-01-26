@@ -8,8 +8,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="m-0 font-sans text-base antialiased font-normal leading-default bg-[#F6F7F8] text-slate-500">
-    <div class="absolute w-full bg-[#FF8133] min-h-[300px]"></div>
-    <!-- sidenav  -->
+    <div class="absolute w-full  min-h-[300px]"></div>
+
     <x-Landing.sidenav></x-Landing.sidenav>
 
     <main class="relative h-full max-h-screen transition-all duration-200 ease-in-out xl:ml-72 rounded-xl">

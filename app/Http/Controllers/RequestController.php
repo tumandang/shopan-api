@@ -10,10 +10,10 @@ class RequestController extends Controller
     public function index()
     {
         $requestproducts = ModelsRequest::with('user')->get();
-        return view('pages.request.requesttable',compact('requestproducts'));
+        return view('pages.request.requesttable', compact('requestproducts'));
     }
 
-    // Request API
+
     public function RequestAPI(Request $request)
     {
         $data = $request->validate([
@@ -28,19 +28,40 @@ class RequestController extends Controller
             'product_image'     => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'customer_notes'    => 'nullable|string|max:2000',
         ]);
+        if ($request->hasFile('product_image')) {
+            $image = $request->file('product_image');
+
+
+            $filename = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+
+            $path = $image->storeAs('product_images', $filename, 'public');
+
+
+            $data['product_image'] = $path;
+        }
         $data['user_id'] = auth()->id();
         $requestProduct = ModelsRequest::create($data);
 
         return response()->json([
             'success' => true,
             'message' => 'Request submitted successfully',
-            'data'    => $requestProduct
+            'data'    => $requestProduct,
+            'image_url' => $requestProduct->product_image
+                ? asset('storage/' . $requestProduct->product_image)
+                : null
         ]);
     }
+    public function detailRequest($id)
+    {
+        $request = ModelsRequest::with(['user'])->findOrFail($id);
+        return response()->json($request);
+    }
 
-    public function updateRequest(Request $request){
+    public function updateRequest(Request $request)
+    {
         $data = $request->validate([
-            'service_fee' => 'required|numeric|min:0' ,
+            'service_fee' => 'required|numeric|min:0',
             'domestic_shipping' => 'required|numeric|min:0',
             'admin_notes' => 'nullable|string|max:1000'
         ]);
@@ -57,7 +78,8 @@ class RequestController extends Controller
         ]);
         return back()->with('success', 'Price quoted successfully');
     }
-    public function rejectRequest(Request $request){
+    public function rejectRequest(Request $request)
+    {
 
         $request->validate(
             ['admin_notes' => 'nullable|string|max:1000']
@@ -69,39 +91,42 @@ class RequestController extends Controller
         ]);
         return back()->with('success', 'Request reject successfully');
     }
-    public function cancelRequest(Request $request) {
+    public function cancelRequest(Request $request)
+    {
         $id = $request->input('request_id');
         $requestProduct = ModelsRequest::findOrFail($id);
         $requestProduct->update(['status' => 'cancelled']);
         return response()->json(['status' => true, 'message' => 'Cancelled']);
     }
-    public function acceptRequest(Request $request) {
+    public function acceptRequest(Request $request)
+    {
         $id = $request->input('request_id');
         $requestProduct = ModelsRequest::findOrFail($id);
         $requestProduct->update(['status' => 'pending_payment']);
         return response()->json(['status' => true, 'message' => 'Accepted']);
     }
-    public function deleteRequest($request_id){
+    public function deleteRequest($request_id)
+    {
         ModelsRequest::findOrFail($request_id)->delete();
-        
+
         return redirect()->route('request.index')
             ->with('success', 'Request deleted successfully');
     }
-    public function deleteRequestAPI(Request $request){
+    public function deleteRequestAPI(Request $request)
+    {
 
         $id = $request->input('request_id');
         ModelsRequest::findOrFail($id)->delete();
         return response()->json(['status' => true, 'message' => 'Deleted']);
     }
 
-  public function FetchRequest(Request $request)
+    public function FetchRequest(Request $request)
     {
-            $ListRequest = ModelsRequest::all();
-            
-            return response()->json([
-                'status' => true,
-                'request' => $ListRequest
-            ]);
-            
+        $ListRequest = ModelsRequest::all();
+
+        return response()->json([
+            'status' => true,
+            'request' => $ListRequest
+        ]);
     }
 }

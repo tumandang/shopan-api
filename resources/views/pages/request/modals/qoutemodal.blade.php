@@ -20,7 +20,7 @@
             <form method="POST"  action="{{ route('request.update') }}">
                 @csrf
                 @method('PUT')
-                <input type="hidden" name="request_id" value="{{ $requestproduct->id }}">
+                <input type="hidden" name="request_id" id="modal-quote-request-id">
                 <div class="border border-slate-200 rounded-lg p-4 mb-3">
                     <h3 class="text-sm font-semibold text-slate-700 uppercase tracking-wide mb-3 flex items-center">
                         <svg class="w-4 h-4 mr-2 text-orange-600 " xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -31,15 +31,17 @@
                         Request Details
                     </h3>
                     <div class=" grid grid-flow-col grid-cols-2 gap-4">
-                        <div
-                            class="row-span-3 border-2 border-dashed border-slate-300 bg-slate-100 p-4 rounded-lg flex justify-center items-center gap-x-3">
-                            <svg xmlns="http://www.w3.org/2000/svg" class=" w-6 h-6" fill="none" viewBox="0 0 24 24"
-                                stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <div id="modal-qoute-product-image" class="row-span-3 border-2 border-dashed border-slate-300 bg-slate-100 rounded-lg overflow-hidden">
+                        
+                        <div class="h-full flex flex-col items-center justify-center p-4 text-slate-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 mb-2" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
                             </svg>
-                            <p>No Image</p>
+                            <p class="text-sm font-medium">No Image</p>
                         </div>
+                    </div>
                         <div class="bg-slate-100 p-4 rounded-lg ">
                             <p class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">Request Name</p>
                             <p class="text-xs font-medium text-slate-900" id="modal-request-name">-</p>

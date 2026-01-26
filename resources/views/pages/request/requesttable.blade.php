@@ -4,17 +4,39 @@
 
 @section('content')
 
-    <div class="mb-6 rounded-2xl bg-white p-6 shadow-sm">
-        <h3 class="text-2xl font-bold text-slate-800">Shopan Banner Management</h3>
-        <p class="mt-1 text-sm text-slate-500">Manage and organize your banner slides</p>
+    <div class="bg-white px-6 py-4 flex items-center justify-between border-b border-gray-200 shadow-sm">
+        <h1 class="text-lg font-semibold text-gray-900">Shopan Request Management</h1>
+        
+        <div class="flex items-center gap-4">
+            <button class="text-gray-600 hover:text-gray-900 transition-colors" aria-label="Change language">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" />
+                </svg>
+            </button>
+
+            <button class="text-gray-600 hover:text-gray-900 transition-colors relative" aria-label="Notifications">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0" />
+                </svg>
+            </button>
+
+            <button class="text-gray-600 hover:text-gray-900 transition-colors" aria-label="User profile">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                </svg>
+            </button>
+        </div>
     </div>
 
 
     <div class="w-full mx-auto">
-        <div class="flex flex-wrap -mx-3">
+        <div class="flex flex-wrap ">
             <div class="flex-none w-full max-w-full px-3">
-                <div
-                    class="relative flex flex-col min-w-0 mb-6 break-words bg-white border border-slate-200 shadow-lg rounded-2xl">
+                <div class="mb-6 p-4">
+                    <h2 class="text-2xl font-bold text-gray-900">Order Management</h2>
+                    <p class="mt-1 text-sm text-gray-600">Manage and organize customer requests</p>
+                </div>
+                <div class="relative flex flex-col min-w-0 mb-6 break-words bg-white border border-slate-200 shadow-lg rounded-2xl ">
                     <div class="p-6 pb-4 border-b border-slate-200 bg-gradient-to-r from-slate-50 to-white rounded-t-2xl">
                         <div class="flex items-center justify-between">
                             <h5 class="text-xl font-semibold text-slate-800">Request Table</h5>
@@ -140,8 +162,7 @@
 
 
                                             <td class="px-6 py-4 whitespace-nowrap text-center">
-                                                <span
-                                                    class="text-sm text-slate-600">{{ $requestproduct->created_at->format('d/m/Y') }}</span>
+                                                <span class="text-sm text-slate-600">{{ $requestproduct->created_at->format('d/m/Y') }}</span>
                                             </td>
 
 

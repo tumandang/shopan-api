@@ -166,7 +166,7 @@
 
         <div class="divider"></div>
 
-        <!-- Total Section -->
+
         <div class="total-section">
             <table class="total-table">
                 <tr>
@@ -180,7 +180,6 @@
             </div>
         </div>
 
-        <!-- Payment Info -->
         @if(isset($order->payment_method))
         <div class="payment-info">
             <table class="payment-table">
@@ -203,7 +202,7 @@
         </div>
         @endif
 
-        <!-- Status Badge -->
+        
         <div class="status-badge">
             <div class="badge">
                 <span class="checkmark">✓</span>
@@ -213,7 +212,7 @@
 
         <div class="divider"></div>
 
-        <!-- Footer Message -->
+    
         <div class="footer-message">
             <div class="thank-you">
                 Thank you for your payment! You will receive a separate invoice for international shipping once calculated.
@@ -223,7 +222,7 @@
             </div>
         </div>
 
-        <!-- Footer Info -->
+    
         <div class="footer-info">
             <div>@shopan • www.shopan.com</div>
         </div>

@@ -20,7 +20,7 @@
                 <form method="POST" action="{{ route('request.reject') }}">
                     @csrf
                     @method('PUT')
-                    <input type="hidden" name="request_id" value="{{ $requestproduct->id }}">
+                    <input type="hidden" name="request_id" id="modal-reject-request-id">
                     <div class="border border-slate-200 rounded-lg p-4">
                         <div class="space-y-2 md:col-span-2">
                             <label for="admin_notes" class="block mb-2.5 text-sm font-medium text-heading">
