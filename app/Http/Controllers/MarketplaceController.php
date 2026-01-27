@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\Categories;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use App\Models\Category;
 use App\Models\Marketplace;
 use Illuminate\Http\Request;
@@ -33,9 +32,13 @@ class MarketplaceController extends Controller
 
         $data = $request->only('name', 'description', 'link_marketplace');
 
-
         if ($request->hasFile('logo')) {
-            $data['logo'] = $request->file('logo')->store('marketplace-logos', 'public');
+            // Upload ke Cloudinary
+            $data['logo'] = Cloudinary::upload($request->file('logo')->getRealPath(), [
+                'folder' => 'marketplace-logos',
+                'overwrite' => true,
+                'resource_type' => 'image'
+            ])->getSecurePath();
         }
 
         $marketplace = Marketplace::create($data);
@@ -45,12 +48,6 @@ class MarketplaceController extends Controller
         }
 
         return redirect()->route('marketplaces.index')->with('success', 'Marketplace added.');
-    }
-
-    public function edit(Marketplace $marketplace)
-    {
-        $categories = Category::all();
-        return view('pages.marketplace.edit', compact('marketplace', 'categories'));
     }
 
     public function update(Request $request, Marketplace $marketplace)
@@ -66,7 +63,12 @@ class MarketplaceController extends Controller
         $data = $request->only('name', 'description', 'link_marketplace');
 
         if ($request->hasFile('logo')) {
-            $data['logo'] = $request->file('logo')->store('marketplace-logos', 'public');
+            // Upload ke Cloudinary
+            $data['logo'] = Cloudinary::upload($request->file('logo')->getRealPath(), [
+                'folder' => 'marketplace-logos',
+                'overwrite' => true,
+                'resource_type' => 'image'
+            ])->getSecurePath();
         }
 
         $marketplace->update($data);
@@ -87,7 +89,7 @@ class MarketplaceController extends Controller
     public function fetchMarketplace()
     {
         $marketplaces = Marketplace::with('categories')->get();
-        
+
         return response()->json([
             'status' => true,
             'data' => $marketplaces
