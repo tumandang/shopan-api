@@ -22,71 +22,85 @@ class MarketplaceController extends Controller
         return view('pages.marketplace.create', compact('categories'));
     }
 
-public function store(Request $request)
-{
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'logo' => 'nullable|image|max:2048',
-        'description' => 'nullable|string',
-        'link_marketplace' => 'required|url',
-        'categories' => 'nullable|array',
-    ]);
-
-    $data = $request->only('name', 'description', 'link_marketplace');
-
-    if ($request->hasFile('logo')) {
-        // Upload ke Cloudinary
-        $data['logo'] = Cloudinary::upload($request->file('logo')->getRealPath(), [
-            'folder' => 'marketplace-logos',
-            'overwrite' => true,
-            'resource_type' => 'image'
-        ])->getSecurePath();
-    }
-
-    $marketplace = Marketplace::create($data);
-
-    if ($request->categories) {
-        $marketplace->categories()->sync($request->categories);
-    }
-
-    return redirect()->route('marketplaces.index')->with('success', 'Marketplace added.');
-}
-
     public function edit(Marketplace $marketplace)
     {
         $categories = Category::all();
         return view('pages.marketplace.edit', compact('marketplace', 'categories'));
     }
 
+     public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'logo' => 'nullable|image|max:2048', // max 2MB
+            'description' => 'nullable|string',
+            'link_marketplace' => 'required|url',
+            'categories' => 'nullable|array',
+        ]);
+
+        $data = $request->only('name', 'description', 'link_marketplace');
+
+        if ($request->hasFile('logo')) {
+            try {
+                $data['logo'] = Cloudinary::upload(
+                    $request->file('logo')->getRealPath(),
+                    [
+                        'folder' => 'marketplace-logos',
+                        'overwrite' => true,
+                        'resource_type' => 'image',
+                    ]
+                )->getSecurePath();
+            } catch (\Exception $e) {
+                return back()->with('error', 'Logo upload failed: ' . $e->getMessage());
+            }
+        }
+
+        $marketplace = Marketplace::create($data);
+
+        if ($request->categories) {
+            $marketplace->categories()->sync($request->categories);
+        }
+
+        return redirect()->route('marketplaces.index')->with('success', 'Marketplace added successfully!');
+    }
+
     public function update(Request $request, Marketplace $marketplace)
-{
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'logo' => 'nullable|image|max:2048',
-        'description' => 'nullable|string',
-        'link_marketplace' => 'required|url',
-        'categories' => 'nullable|array',
-    ]);
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'logo' => 'nullable|image|max:2048', 
+            'description' => 'nullable|string',
+            'link_marketplace' => 'required|url',
+            'categories' => 'nullable|array',
+        ]);
 
-    $data = $request->only('name', 'description', 'link_marketplace');
+        $data = $request->only('name', 'description', 'link_marketplace');
 
-    if ($request->hasFile('logo')) {
-        // Upload ke Cloudinary
-        $data['logo'] = Cloudinary::upload($request->file('logo')->getRealPath(), [
-            'folder' => 'marketplace-logos',
-            'overwrite' => true,
-            'resource_type' => 'image'
-        ])->getSecurePath();
+        if ($request->hasFile('logo')) {
+            try {
+                $data['logo'] = Cloudinary::upload(
+                    $request->file('logo')->getRealPath(),
+                    [
+                        'folder' => 'marketplace-logos',
+                        'overwrite' => true,
+                        'resource_type' => 'image',
+                    ]
+                )->getSecurePath();
+            } catch (\Exception $e) {
+                return back()->with('error', 'Logo upload failed: ' . $e->getMessage());
+            }
+        }
+
+        $marketplace->update($data);
+
+        if ($request->categories) {
+            $marketplace->categories()->sync($request->categories);
+        }
+
+        return redirect()->route('marketplaces.index')->with('success', 'Marketplace updated successfully!');
     }
 
-    $marketplace->update($data);
-
-    if ($request->categories) {
-        $marketplace->categories()->sync($request->categories);
-    }
-
-    return redirect()->route('marketplaces.index')->with('success', 'Marketplace updated.');
-}
+  
     public function destroy(Marketplace $marketplace)
     {
         $marketplace->delete();

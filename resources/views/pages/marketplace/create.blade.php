@@ -64,7 +64,8 @@
                                                     d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                             </svg>
                                             <span class="mt-2 text-sm font-medium text-gray-600">
-                                                <span class="text-orange-600 hover:text-orange-700">Click to upload</span> or
+                                                <span class="text-orange-600 hover:text-orange-700">Click to upload</span>
+                                                or
                                                 drag and drop
                                             </span>
                                             <span class="mt-1 text-xs text-gray-500">PNG, JPG, GIF up to 2MB</span>
@@ -166,6 +167,11 @@
                         </button>
                     </div>
                 </form>
+                @if (session('error'))
+                    <div class="text-red-600 mb-4">
+                        {{ session('error') }}
+                    </div>
+                @endif
             </div>
 
             <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">

@@ -55,7 +55,7 @@
                         <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
                                 @if($m->logo)
-                                    <img src="{{ asset('storage/'.$m->logo) }}" 
+                                    <img src="{{ $marketplace->logo }}" 
                                          alt="{{ $m->name }} logo"
                                          class="w-16 h-16 object-contain rounded-lg border border-gray-200 bg-white p-1">
                                 @else
