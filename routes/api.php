@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\Authcontroller;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CustomerController;
@@ -21,6 +22,7 @@ Route :: post('login',[Authcontroller :: class ,'login']);
 Route :: get('banner',[BannerController::class,'getAllBanners']);
 Route::get('/banner/{id}', [BannerController::class, 'getImage']);
 Route ::get('marketplace',[MarketplaceController::class , 'fetchMarketplace']);
+Route ::get('fetchblog',[AnnouncementController::class,'fetchBlog']);
 Route::post('/stripe/webhook', [StripeWebhookController::class , 'handle']);
 Route :: group(
     [

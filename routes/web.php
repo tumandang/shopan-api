@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\Authcontroller;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\CategoriesController;
@@ -43,7 +44,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('/marketplaces',MarketplaceController::class);
 
-
+    Route::resource('/blog',AnnouncementController::class);
 
     Route::post('/logout', function(){
         Auth::logout();

@@ -2,7 +2,7 @@
 @section('title', 'Marketplace Management')
 @section('content')
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <!-- Header Section -->
+
     <div class="mb-8">
         <div class="flex items-center mb-4">
             <a href="{{ route('categories.index') }}" 
@@ -69,7 +69,7 @@
                     </div>
                 </div>
 
-                <!-- Form Actions -->
+   
                 <div class="flex items-center justify-end space-x-3 mt-8 pt-6 border-t border-gray-200">
                     <a href="{{ route('categories.index') }}" 
                        class="inline-flex items-center px-4 py-2.5 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors duration-200">
@@ -86,7 +86,7 @@
             </form>
         </div>
 
-        <!-- Help Section -->
+
         <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
             <div class="flex">
                 <div class="flex-shrink-0">
@@ -110,7 +110,7 @@
 </div>
 
 <script>
-    // Auto-generate slug from name
+
     document.getElementById('name').addEventListener('input', function(e) {
         const slug = e.target.value
             .toLowerCase()
