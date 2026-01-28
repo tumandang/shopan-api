@@ -17,12 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [Authcontroller::class, 'loginadmin'])->name('login');
 Route::post('/loginadmin', [Authcontroller::class, 'loginmasuk'])->name('logmasuk.admin');
 Route::get('/cloudinary-test', function () {
-    // First, check if env variables are loading
     return response()->json([
-        'cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
-        'api_key' => env('CLOUDINARY_API_KEY'),
-        'api_secret' => env('CLOUDINARY_API_SECRET'),
+        'env_cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
         'config_cloud_name' => config('filesystems.disks.cloudinary.cloud_name'),
+        'config_api_key' => config('filesystems.disks.cloudinary.api_key'),
     ]);
 });
 Route::middleware(['auth'])->group(function () {
