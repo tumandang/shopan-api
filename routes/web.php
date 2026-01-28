@@ -18,9 +18,14 @@ Route::get('/', [Authcontroller::class, 'loginadmin'])->name('login');
 Route::post('/loginadmin', [Authcontroller::class, 'loginmasuk'])->name('logmasuk.admin');
 
 Route::get('/cloudinary-test', function () {
-    return Cloudinary::upload(
-        base_path('public/favicon.ico')
-    )->getSecurePath();
+    $upload = cloudinary()->upload(
+        base_path('public/favicon.ico'),
+        [
+            'folder' => 'test',
+        ]
+    );
+
+    return $upload->getSecurePath();
 });
 Route::middleware(['auth'])->group(function () {
     
