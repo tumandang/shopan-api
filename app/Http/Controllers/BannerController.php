@@ -46,12 +46,7 @@ class BannerController extends Controller
 
                 return back()->with('success', 'Banner uploaded successfully!');
             } catch (\Exception $e) {
-                return response()->json([
-                    'error' => $e->getMessage(),
-                    'file' => $e->getFile(),
-                    'line' => $e->getLine(),
-                    'trace' => $e->getTraceAsString()
-                ], 500);
+                return back()->with('fail', 'ERROR: ' . $e->getMessage() . ' | File: ' . $e->getFile() . ' | Line: ' . $e->getLine());
             }
         } else {
             return back()->with('fail', 'No banner file selected.');
