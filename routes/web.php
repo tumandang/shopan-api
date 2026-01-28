@@ -18,8 +18,8 @@ Route::get('/', [Authcontroller::class, 'loginadmin'])->name('login');
 Route::post('/loginadmin', [Authcontroller::class, 'loginmasuk'])->name('logmasuk.admin');
 
 Route::get('/cloudinary-test', function () {
-    $upload = cloudinary()->upload(
-        base_path('public/favicon.ico'),
+    $upload = Cloudinary::upload(
+        public_path('favicon.ico'),
         [
             'folder' => 'test',
         ]
