@@ -9,17 +9,22 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RequestController;
 use App\Models\Categories;
 use App\Models\Marketplace;
+use Cloudinary\Cloudinary;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [Authcontroller::class, 'loginadmin'])->name('login');
 Route::post('/loginadmin', [Authcontroller::class, 'loginmasuk'])->name('logmasuk.admin');
-
+Route::get('/cloudinary-test', function () {
+    return Cloudinary::upload(
+        public_path('/img/bg-shopan.jpg')
+    )->getSecurePath();
+});
 
 Route::middleware(['auth'])->group(function () {
     
-  
+    
     Route::get('/dashboard', function(){
         return view('pages.dashboard.shopan');
     })->name('dashboard.show');
