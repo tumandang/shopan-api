@@ -11,7 +11,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['https://shoppyjapan.vercel.app/'],
+    'allowed_origins' => ['https:/shoppyjapan.vercel.app/'],
 
     'allowed_headers' => ['*'],
 
