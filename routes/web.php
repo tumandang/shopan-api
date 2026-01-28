@@ -17,11 +17,19 @@ use Illuminate\Support\Facades\Storage;
 Route::get('/', [Authcontroller::class, 'loginadmin'])->name('login');
 Route::post('/loginadmin', [Authcontroller::class, 'loginmasuk'])->name('logmasuk.admin');
 Route::get('/cloudinary-test', function () {
-    return Cloudinary::upload(
-        'https://res.cloudinary.com/demo/image/upload/sample.jpg'
-    )->getSecurePath();
+    try {
+        $result = Cloudinary::upload(public_path('img/bg-shopan.jpg'));
+        return [
+            'secure_url' => $result->getSecurePath(),
+        ];
+    } catch (\Exception $e) {
+        return [
+            'error' => $e->getMessage(),
+            'env_cloudinary_url' => env('CLOUDINARY_URL'),
+            'config_cloud_name' => config('filesystems.disks.cloudinary.cloud_name')
+        ];
+    }
 });
-
 Route::middleware(['auth'])->group(function () {
     
     
