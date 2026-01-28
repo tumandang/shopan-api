@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Banner;
 use Illuminate\Http\Request;
+use Cloudinary\Cloudinary as CloudinaryAPI;
 
 class BannerController extends Controller
 {
@@ -12,31 +13,42 @@ class BannerController extends Controller
         $banners = Banner::all();
         return view('pages.bannermanage.banner', compact('banners'));
     }
+
     public function storebanner(Request $request)
     {
-        $request->validate([ 'banner_image' => 'required|image|max:5120' ]);
+        $request->validate(['banner_image' => 'required|image|max:5120']);
 
         if ($request->hasFile('banner_image')) {
             try {
-                $path = $request->file('banner_image')->store('banner', 'public');
+    
+                $cloudinary = new CloudinaryAPI([
+                    'cloud' => [
+                        'cloud_name' => config('cloudinary.cloud_name'),
+                        'api_key' => config('cloudinary.api_key'),
+                        'api_secret' => config('cloudinary.api_secret'),
+                    ],
+                    'url' => [
+                        'secure' => true
+                    ]
+                ]);
 
-                
+                $result = $cloudinary->uploadApi()->upload(
+                    $request->file('banner_image')->getRealPath(),
+                    ['folder' => 'banners']
+                );
+
                 $position = Banner::max('position') ? Banner::max('position') + 1 : 1;
 
-              
                 Banner::create([
-                    'image' => $path,
+                    'image' => $result['secure_url'], 
                     'position' => $position
                 ]);
 
-              
                 return back()->with('success', 'Banner uploaded successfully!');
             } catch (\Exception $e) {
-                
-                return back()->with('fail', 'Failed to upload banner. Please try again.');
+                return back()->with('fail', 'Failed to upload banner: ' . $e->getMessage());
             }
         } else {
-         
             return back()->with('fail', 'No banner file selected.');
         }
     }
@@ -50,18 +62,20 @@ class BannerController extends Controller
         return redirect()->route('banner.index');
     }
 
-    public function getImage($id){
+    public function getImage($id)
+    {
         $image = Banner::find($id);
         return response()->json([
-            'url' => asset('storage/'.$image->image),
-             'position' => $image->position,
+            'url' => $image->image,
+            'position' => $image->position,
         ]);
     }
+
     public function getAllBanners()
     {
         $banners = Banner::orderBy('position', 'asc')->get()->map(function ($banner) {
             return [
-                'url' => asset('storage/' . $banner->image), 
+                'url' => $banner->image, // Already a full Cloudinary URL
                 'position' => $banner->position,
             ];
         });
