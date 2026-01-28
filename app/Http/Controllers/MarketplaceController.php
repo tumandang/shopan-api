@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categories;
 use App\Models\Category;
 use App\Models\Marketplace;
-use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class MarketplaceController extends Controller
 {
@@ -28,11 +27,11 @@ class MarketplaceController extends Controller
         return view('pages.marketplace.edit', compact('marketplace', 'categories'));
     }
 
-     public function store(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'logo' => 'nullable|image|max:2048', // max 2MB
+            'logo' => 'nullable|image|max:2048',
             'description' => 'nullable|string',
             'link_marketplace' => 'required|url',
             'categories' => 'nullable|array',
@@ -42,15 +41,18 @@ class MarketplaceController extends Controller
 
         if ($request->hasFile('logo')) {
             try {
-                $data['logo'] = Cloudinary::upload(
+             
+                $uploadedFile = cloudinary()->uploadFile(
                     $request->file('logo')->getRealPath(),
                     [
                         'folder' => 'marketplace-logos',
-                        'overwrite' => true,
-                        'resource_type' => 'image',
+                        'resource_type' => 'image'
                     ]
-                )->getSecurePath();
+                );
+                
+                $data['logo'] = $uploadedFile->getSecurePath();
             } catch (\Exception $e) {
+                Log::error('Cloudinary upload error: ' . $e->getMessage());
                 return back()->with('error', 'Logo upload failed: ' . $e->getMessage());
             }
         }
@@ -78,15 +80,18 @@ class MarketplaceController extends Controller
 
         if ($request->hasFile('logo')) {
             try {
-                $data['logo'] = Cloudinary::upload(
+   
+                $uploadedFile = cloudinary()->uploadFile(
                     $request->file('logo')->getRealPath(),
                     [
                         'folder' => 'marketplace-logos',
-                        'overwrite' => true,
-                        'resource_type' => 'image',
+                        'resource_type' => 'image'
                     ]
-                )->getSecurePath();
+                );
+                
+                $data['logo'] = $uploadedFile->getSecurePath();
             } catch (\Exception $e) {
+                Log::error('Cloudinary upload error: ' . $e->getMessage());
                 return back()->with('error', 'Logo upload failed: ' . $e->getMessage());
             }
         }
@@ -100,7 +105,6 @@ class MarketplaceController extends Controller
         return redirect()->route('marketplaces.index')->with('success', 'Marketplace updated successfully!');
     }
 
-  
     public function destroy(Marketplace $marketplace)
     {
         $marketplace->delete();

@@ -18,24 +18,19 @@ Route::get('/', [Authcontroller::class, 'loginadmin'])->name('login');
 Route::post('/loginadmin', [Authcontroller::class, 'loginmasuk'])->name('logmasuk.admin');
 Route::get('/cloudinary-test', function () {
     try {
-        $file = new \Illuminate\Http\UploadedFile(
+        $result = cloudinary()->uploadFile(
             public_path('img/bg-shopan.jpg'),
-            'bg-shopan.jpg'
+            ['folder' => 'test']
         );
-        
-        $path = Storage::disk('cloudinary')->putFile('test', $file);
-        $url = Storage::disk('cloudinary')->url($path);
         
         return response()->json([
             'success' => true,
-            'path' => $path,
-            'url' => $url
+            'url' => $result->getSecurePath()
         ]);
     } catch (\Exception $e) {
         return response()->json([
             'error' => $e->getMessage(),
-            'line' => $e->getLine(),
-            'file' => $e->getFile()
+            'trace' => $e->getTraceAsString()
         ], 500);
     }
 });
