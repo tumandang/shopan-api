@@ -27,7 +27,7 @@ class MarketplaceController extends Controller
         return view('pages.marketplace.edit', compact('marketplace', 'categories'));
     }
 
-    public function store(Request $request)
+   public function store(Request $request)
 {
     $request->validate([
         'name' => 'required|string|max:255',
@@ -41,14 +41,6 @@ class MarketplaceController extends Controller
 
     if ($request->hasFile('logo')) {
         try {
-            // Set Cloudinary config explicitly
-            \Cloudinary\Cloudinary::config([
-                'cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
-                'api_key' => env('CLOUDINARY_KEY'),
-                'api_secret' => env('CLOUDINARY_SECRET'),
-                'secure' => true
-            ]);
-
             $uploadedFileUrl = Cloudinary::upload(
                 $request->file('logo')->getRealPath(),
                 ['folder' => 'marketplace-logos']
@@ -83,14 +75,6 @@ public function update(Request $request, Marketplace $marketplace)
 
     if ($request->hasFile('logo')) {
         try {
-            
-            \Cloudinary\Cloudinary::config([
-                'cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
-                'api_key' => env('CLOUDINARY_KEY'),
-                'api_secret' => env('CLOUDINARY_SECRET'),
-                'secure' => true
-            ]);
-
             $uploadedFileUrl = Cloudinary::upload(
                 $request->file('logo')->getRealPath(),
                 ['folder' => 'marketplace-logos']
