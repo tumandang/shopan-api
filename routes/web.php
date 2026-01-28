@@ -17,23 +17,11 @@ use Illuminate\Support\Facades\Storage;
 Route::get('/', [Authcontroller::class, 'loginadmin'])->name('login');
 Route::post('/loginadmin', [Authcontroller::class, 'loginmasuk'])->name('logmasuk.admin');
 Route::get('/cloudinary-test', function () {
-    try {
-        $result = cloudinary()->uploadFile(
-            public_path('img/bg-shopan.jpg'),
-            ['folder' => 'test']
-        );
-        
-        return response()->json([
-            'success' => true,
-            'url' => $result->getSecurePath()
-        ]);
-    } catch (\Exception $e) {
-        return response()->json([
-            'error' => $e->getMessage(),
-            'trace' => $e->getTraceAsString()
-        ], 500);
-    }
+    return Cloudinary::upload(
+        'https://res.cloudinary.com/demo/image/upload/sample.jpg'
+    )->getSecurePath();
 });
+
 Route::middleware(['auth'])->group(function () {
     
     
