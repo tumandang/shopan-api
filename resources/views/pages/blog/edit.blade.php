@@ -63,7 +63,7 @@
                     @if($blog->image)
                         <div class="mb-3">
                             <p class="text-sm text-gray-600 mb-2">Current Image:</p>
-                            <img src="{{ asset('storage/' . $blog->image) }}" 
+                            <img src="{{ $blog->image }}" 
                                  alt="Current featured image" 
                                  class="w-48 h-32 object-cover rounded-lg border border-gray-200">
                         </div>
