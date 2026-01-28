@@ -12,16 +12,32 @@ use App\Models\Marketplace;
 use Cloudinary\Cloudinary;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Storage;
 
 Route::get('/', [Authcontroller::class, 'loginadmin'])->name('login');
 Route::post('/loginadmin', [Authcontroller::class, 'loginmasuk'])->name('logmasuk.admin');
 Route::get('/cloudinary-test', function () {
-    return response()->json([
-        'env_cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
-        'config_cloud_name' => config('filesystems.disks.cloudinary.cloud_name'),
-        'config_api_key' => config('filesystems.disks.cloudinary.api_key'),
-    ]);
+    try {
+        $file = new \Illuminate\Http\UploadedFile(
+            public_path('img/bg-shopan.jpg'),
+            'bg-shopan.jpg'
+        );
+        
+        $path = Storage::disk('cloudinary')->putFile('test', $file);
+        $url = Storage::disk('cloudinary')->url($path);
+        
+        return response()->json([
+            'success' => true,
+            'path' => $path,
+            'url' => $url
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'error' => $e->getMessage(),
+            'line' => $e->getLine(),
+            'file' => $e->getFile()
+        ], 500);
+    }
 });
 Route::middleware(['auth'])->group(function () {
     
