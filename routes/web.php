@@ -18,7 +18,7 @@ Route::get('/', [Authcontroller::class, 'loginadmin'])->name('login');
 Route::post('/loginadmin', [Authcontroller::class, 'loginmasuk'])->name('logmasuk.admin');
 Route::get('/cloudinary-test', function () {
     return Cloudinary::upload(
-        public_path('/img/bg-shopan.jpg')
+        public_path('img/bg-shopan.jpg')
     )->getSecurePath();
 });
 
