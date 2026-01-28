@@ -50,8 +50,8 @@ class StripeController extends Controller
                 'request_id' => $requestProduct->id,
                 'user_id' => $requestProduct->user_id,
             ],
-            'success_url' => "http://localhost:3000/{$locale}/payment/success?session_id={CHECKOUT_SESSION_ID}",
-            'cancel_url'  => "http://localhost:3000/{$locale}/payment/cancel",
+            'success_url' => "https://shoppyjapan.vercel.app/{$locale}/payment/success?session_id={CHECKOUT_SESSION_ID}",
+            'cancel_url'  => "https://shoppyjapan.vercel.app/{$locale}/payment/cancel",
         ]);
 
         return response()->json([
