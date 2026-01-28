@@ -55,7 +55,7 @@
             
             @foreach ($banners as $banner)
                 <div class="group relative flex min-h-[200px] flex-col items-center justify-center gap-3 overflow-hidden rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 p-6 transition-all hover:border-blue-400 hover:bg-blue-50/50">
-                    <img src="{{ asset('storage/' . $banner->image) }}" alt="Banner {{ $loop->iteration }}"
+                    <img src="{{ $banner->image }}" alt="Banner {{ $loop->iteration }}"
                         class="h-32 w-full object-cover rounded-xl">
                     <p class="text-sm font-medium text-slate-700">Banner {{ $banner->position }}</p>
 
