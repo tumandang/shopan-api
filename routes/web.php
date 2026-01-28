@@ -17,15 +17,31 @@ use Illuminate\Support\Facades\Storage;
 Route::get('/', [Authcontroller::class, 'loginadmin'])->name('login');
 Route::post('/loginadmin', [Authcontroller::class, 'loginmasuk'])->name('logmasuk.admin');
 
-Route::get('/cloudinary-test', function () {
-    $upload = Cloudinary::upload(
-        public_path('favicon.ico'),
-        [
-            'folder' => 'test',
-        ]
-    );
-
-    return $upload->getSecurePath();
+Route::get('/test-cloudinary', function() {
+    try {
+        $cloudinary = new \Cloudinary\Cloudinary([
+            'cloud' => [
+                'cloud_name' => config('cloudinary.cloud_name'),
+                'api_key' => config('cloudinary.api_key'),
+                'api_secret' => config('cloudinary.api_secret'),
+            ],
+            'url' => [
+                'secure' => true
+            ]
+        ]);
+        
+        return response()->json([
+            'status' => 'success',
+            'cloud_name' => config('cloudinary.cloud_name'),
+            'api_key' => config('cloudinary.api_key'),
+            'api_secret_set' => !empty(config('cloudinary.api_secret'))
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'error',
+            'message' => $e->getMessage()
+        ]);
+    }
 });
 Route::middleware(['auth'])->group(function () {
     
