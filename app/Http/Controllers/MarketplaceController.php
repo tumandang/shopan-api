@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Marketplace;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class MarketplaceController extends Controller
 {
@@ -27,11 +28,11 @@ class MarketplaceController extends Controller
         return view('pages.marketplace.edit', compact('marketplace', 'categories'));
     }
 
-   public function store(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'logo' => 'nullable|image|max:2048', // max 2MB
+            'logo' => 'nullable|image|max:2048',
             'description' => 'nullable|string',
             'link_marketplace' => 'required|url',
             'categories' => 'nullable|array',
@@ -39,11 +40,14 @@ class MarketplaceController extends Controller
 
         $data = $request->only('name', 'description', 'link_marketplace');
 
-    
         if ($request->hasFile('logo')) {
             try {
-                $uploadedFile = $request->file('logo')->storeOnCloudinary('marketplace-logos');
-                $data['logo'] = $uploadedFile->getSecurePath();
+                $uploadedFileUrl = Cloudinary::upload(
+                    $request->file('logo')->getRealPath(),
+                    ['folder' => 'marketplace-logos']
+                )->getSecurePath();
+                
+                $data['logo'] = $uploadedFileUrl;
             } catch (\Exception $e) {
                 return back()->with('error', 'Logo upload failed: ' . $e->getMessage());
             }
@@ -51,7 +55,6 @@ class MarketplaceController extends Controller
 
         $marketplace = Marketplace::create($data);
 
-       
         if ($request->categories) {
             $marketplace->categories()->sync($request->categories);
         }
@@ -63,7 +66,7 @@ class MarketplaceController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'logo' => 'nullable|image|max:2048', 
+            'logo' => 'nullable|image|max:2048',
             'description' => 'nullable|string',
             'link_marketplace' => 'required|url',
             'categories' => 'nullable|array',
@@ -71,11 +74,14 @@ class MarketplaceController extends Controller
 
         $data = $request->only('name', 'description', 'link_marketplace');
 
-        
         if ($request->hasFile('logo')) {
             try {
-                $uploadedFile = $request->file('logo')->storeOnCloudinary('marketplace-logos');
-                $data['logo'] = $uploadedFile->getSecurePath();
+                $uploadedFileUrl = Cloudinary::upload(
+                    $request->file('logo')->getRealPath(),
+                    ['folder' => 'marketplace-logos']
+                )->getSecurePath();
+                
+                $data['logo'] = $uploadedFileUrl;
             } catch (\Exception $e) {
                 return back()->with('error', 'Logo upload failed: ' . $e->getMessage());
             }
@@ -83,7 +89,6 @@ class MarketplaceController extends Controller
 
         $marketplace->update($data);
 
-      
         if ($request->categories) {
             $marketplace->categories()->sync($request->categories);
         }
