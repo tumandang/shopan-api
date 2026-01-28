@@ -16,6 +16,12 @@ use Illuminate\Support\Facades\Storage;
 
 Route::get('/', [Authcontroller::class, 'loginadmin'])->name('login');
 Route::post('/loginadmin', [Authcontroller::class, 'loginmasuk'])->name('logmasuk.admin');
+
+Route::get('/cloudinary-test', function () {
+    return Cloudinary::upload(
+        base_path('public/favicon.ico')
+    )->getSecurePath();
+});
 Route::middleware(['auth'])->group(function () {
     
     
