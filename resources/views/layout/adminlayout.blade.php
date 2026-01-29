@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>ShopanAdmin | @yield('title', 'Dashboard')</title>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="m-0 font-sans text-base antialiased font-normal leading-default bg-[#F6F7F8] text-slate-500">
 

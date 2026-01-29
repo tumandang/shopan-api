@@ -11,8 +11,8 @@
                     </p>
                 </div>
                 <div class="flex-auto p-4">
-                    <div class="bg-orange-500 rounded">
-                        <canvas id="chart-line" height="300"></canvas>
+                    <div class="">
+                        <canvas id="chart-line1" height="300"></canvas>
                     </div>
                 </div>
             </div>
@@ -122,3 +122,49 @@
         </div>
     </div>
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const ctx = document.getElementById("chart-line1");
+
+    if (!ctx) return;
+
+    new Chart(ctx, {
+        type: "line",
+        data: {
+            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+            datasets: [
+                {
+                    label: "Sales",
+                    data: [120, 190, 170, 220, 200, 260], // dummy data
+                    tension: 0.4,
+                    borderWidth: 3,
+                    pointRadius: 4,
+                    fill: false
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                x: {
+                    grid: {
+                        display: false
+                    }
+                },
+                y: {
+                    grid: {
+                        borderDash: [5, 5]
+                    }
+                }
+            }
+        }
+    });
+});
+</script>
