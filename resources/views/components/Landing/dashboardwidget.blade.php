@@ -11,7 +11,7 @@
                     </p>
                 </div>
                 <div class="flex-auto p-4">
-                    <div class="">
+                    <div class="relative h-[300px]">
                         <canvas id="chart-line1" height="300"></canvas>
                     </div>
                 </div>
