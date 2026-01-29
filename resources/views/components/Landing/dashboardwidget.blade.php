@@ -124,43 +124,53 @@
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const ctx = document.getElementById("chart-line1");
+document.addEventListener("DOMContentLoaded", () => {
+    const canvas = document.getElementById("chart-line1");
+    if (!canvas || typeof Chart === "undefined") return;
 
-    if (!ctx) return;
+    const ctx = canvas.getContext("2d");
+
+    // 🔥 Gradient line
+    const lineGradient = ctx.createLinearGradient(0, 0, 0, 300);
+    lineGradient.addColorStop(0, "#f97316"); // orange-500
+    lineGradient.addColorStop(1, "#fb923c"); // orange-400
+
+    // 🌈 Gradient fill (area under line)
+    const fillGradient = ctx.createLinearGradient(0, 0, 0, 300);
+    fillGradient.addColorStop(0, "rgba(249,115,22,0.35)");
+    fillGradient.addColorStop(1, "rgba(249,115,22,0)");
 
     new Chart(ctx, {
         type: "line",
         data: {
             labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-            datasets: [
-                {
-                    label: "Sales",
-                    data: [120, 190, 170, 220, 200, 260], // dummy data
-                    tension: 0.4,
-                    borderWidth: 3,
-                    pointRadius: 4,
-                    fill: false
-                }
-            ]
+            datasets: [{
+                data: [120, 190, 170, 220, 200, 260],
+                borderColor: lineGradient,
+                backgroundColor: fillGradient,
+                fill: true,
+                tension: 0.45,
+                borderWidth: 3,
+                pointRadius: 4,
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 2
+            }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
-                legend: {
-                    display: false
-                }
+                legend: { display: false }
             },
             scales: {
                 x: {
-                    grid: {
-                        display: false
-                    }
+                    grid: { display: false }
                 },
                 y: {
+                    ticks: { color: "#9ca3af" },
                     grid: {
-                        borderDash: [5, 5]
+                        borderDash: [6, 6],
+                        color: "rgba(0,0,0,0.05)"
                     }
                 }
             }
