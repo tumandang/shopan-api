@@ -1,7 +1,7 @@
 @extends('layout.adminlayout')
 @section('title', 'Announcement Management')
 @section('content')
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-white space-y-5 min-h-screen">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-5 min-h-screen">
         <x-breadcrumb :items="[ ['label' => 'Announcement', 'url' => route('blog.index')]]" />
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between border-b pb-4 border-gray-300">
             <div>
