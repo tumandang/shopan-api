@@ -2,7 +2,7 @@
 @section('title', 'Marketplace Management')
 @section('content')
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-  
+    <x-breadcrumb :items="[ ['label' => 'Categories', 'url' => route('categories.index')]]" />
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8">
         <div>
             <h1 class="text-3xl font-bold text-gray-900">Categories</h1>

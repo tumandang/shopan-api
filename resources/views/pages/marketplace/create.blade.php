@@ -2,7 +2,7 @@
 @section('title', 'Marketplace Management')
 @section('content')
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-
+            
         <div class="mb-8">
             <div class="flex items-center mb-4">
                 <a href="{{ route('marketplaces.index') }}"
