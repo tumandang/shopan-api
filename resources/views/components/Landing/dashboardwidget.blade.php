@@ -98,15 +98,14 @@
                     </div>
     
     
-                    <h5 class="mb-3 text-2xl font-bold leading-tight">Visit Shopan Travel Dashboard</h5>
+                    <h5 class="mb-3 text-2xl font-bold leading-tight">Visit Shopan Japan</h5>
                     <p class="mb-6 text-sm leading-relaxed text-white/90">
-                        Check out the original Shopan Travel WordPress site for reference. Quickly explore the old
-                        platform anytime.
+                        Check out Shopan Japan website and login as user
                     </p>
     
-                    <a href="https://shopantravel.great-site.net/wp-admin" target="_blank"
+                    <a href="https://shoppyjapan.vercel.app/" target="_blank"
                         class="inline-flex items-center justify-center rounded-lg bg-white px-6 py-3 text-sm font-semibold text-slate-800 shadow-lg transition-all hover:bg-slate-50 hover:shadow-xl hover:-translate-y-0.5">
-                        <span>Visit Shopan Travel</span>
+                        <span>Visit Shopan Japan</span>
                         <svg class="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M14 5l7 7m0 0l-7 7m7-7H3" />
