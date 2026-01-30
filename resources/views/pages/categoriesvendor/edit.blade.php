@@ -2,20 +2,10 @@
 @section('title', 'Marketplace Management')
 @section('content')
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-
-    <div class="mb-8">
-        <div class="flex items-center mb-4">
-            <a href="{{ route('categories.index') }}" 
-               class="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors duration-200 mr-4">
-                <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-                </svg>
-                Back
-            </a>
-        </div>
-        <h1 class="text-3xl font-bold text-gray-900">Edit Category</h1>
-        <p class="mt-2 text-sm text-gray-600">Update category information</p>
-    </div>
+        <x-breadcrumb :items="[
+            ['label' => 'Marketplace', 'url' => route('categories.update')],
+            ['label' => 'Edit a Marketplace', 'url' => '#'],
+        ]" />
 
     <div class="max-w-2xl">
         <div class="bg-white rounded-lg shadow-sm border border-gray-200">
