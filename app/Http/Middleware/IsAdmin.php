@@ -16,7 +16,7 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
         {
-            // Check if user is authenticated AND is NOT a customer (meaning they're admin)
+  
             if (!Auth::check() || Auth::user()->is_customers) {
                 Auth::logout();
                 return redirect()->route('login')->with('error', 'Unauthorized access. Admin only.');
