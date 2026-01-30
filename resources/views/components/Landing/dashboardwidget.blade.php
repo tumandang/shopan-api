@@ -62,18 +62,13 @@
     </div>
     <div class="flex flex-wrap mt-6 -mx-3">
         <div class="w-full max-w-full px-3 mt-0 lg:w-7/12 lg:flex-none">
-            <div
-                class="border-black/12.5 dark:bg-slate-850 dark:shadow-dark-xl shadow-xl relative z-20 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
+            <div class="border-black/12.5 dark:bg-slate-850 dark:shadow-dark-xl shadow-xl relative z-20 flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
                 <div class="border-black/12.5 mb-0 rounded-t-2xl border-b-0 border-solid p-6 pt-4 pb-0">
-                    <h6 class="capitalize text-gray-800 font-semibold">Sales overview</h6>
-                    <p class="mb-0 text-sm leading-normal text-black ">
-    
-                        <span class="font-semibold text-emerald-500">+4% more</span> in 2026
-                    </p>
+                    <h6 class="capitalize text-gray-800 font-semibold">Request overview</h6>
                 </div>
                 <div class="flex-auto p-4">
-                    <div class="bg-orange-500 rounded">
-                        <canvas id="chart-line" height="300"></canvas>
+                    <div class="relative h-[300px]">
+                        <canvas id="chart-line2" height="300"></canvas>
                     </div>
                 </div>
             </div>
@@ -130,12 +125,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const ctx = canvas.getContext("2d");
 
-    // 🔥 Gradient line
+  
     const lineGradient = ctx.createLinearGradient(0, 0, 0, 300);
-    lineGradient.addColorStop(0, "#f97316"); // orange-500
-    lineGradient.addColorStop(1, "#fb923c"); // orange-400
+    lineGradient.addColorStop(0, "#f97316"); 
+    lineGradient.addColorStop(1, "#fb923c"); 
 
-    // 🌈 Gradient fill (area under line)
+
     const fillGradient = ctx.createLinearGradient(0, 0, 0, 300);
     fillGradient.addColorStop(0, "rgba(249,115,22,0.35)");
     fillGradient.addColorStop(1, "rgba(249,115,22,0)");
@@ -146,6 +141,59 @@ document.addEventListener("DOMContentLoaded", () => {
             labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
             datasets: [{
                 data: [120, 190, 170, 220, 200, 260],
+                borderColor: lineGradient,
+                backgroundColor: fillGradient,
+                fill: true,
+                tension: 0.45,
+                borderWidth: 3,
+                pointRadius: 4,
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false }
+            },
+            scales: {
+                x: {
+                    grid: { display: false }
+                },
+                y: {
+                    ticks: { color: "#9ca3af" },
+                    grid: {
+                        borderDash: [6, 6],
+                        color: "rgba(0,0,0,0.05)"
+                    }
+                }
+            }
+        }
+    });
+});
+document.addEventListener("DOMContentLoaded", () => {
+    const canvas = document.getElementById("chart-line2");
+    if (!canvas || typeof Chart === "undefined") return;
+
+    const ctx = canvas.getContext("2d");
+
+  
+    const lineGradient = ctx.createLinearGradient(0, 0, 0, 300);
+    lineGradient.addColorStop(0, "#f97316"); 
+    lineGradient.addColorStop(1, "#fb923c"); 
+
+
+    const fillGradient = ctx.createLinearGradient(0, 0, 0, 300);
+    fillGradient.addColorStop(0, "rgba(249,115,22,0.35)");
+    fillGradient.addColorStop(1, "rgba(249,115,22,0)");
+
+    new Chart(ctx, {
+        type: "line",
+        data: {
+            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+            datasets: [{
+                data: [120, 290, 170, 220, 200, 160],
                 borderColor: lineGradient,
                 backgroundColor: fillGradient,
                 fill: true,
