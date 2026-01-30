@@ -3,6 +3,20 @@
 @section('content')
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <x-breadcrumb :items="[ ['label' => 'Vendor', 'url' => route('marketplaces.index')] ]" />
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8">
+        <div>
+            <p class="mt-2 text-sm text-gray-600">Manage all marketplace listings and their categories</p>
+        </div>
+        <div class="mt-4 sm:mt-0">
+            <a href="{{ route('marketplaces.create') }}" 
+               class="inline-flex items-center px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white font-medium rounded-lg shadow-sm transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                </svg>
+                Add Marketplace
+            </a>
+        </div>
+    </div>
 
  
     <div class="bg-white rounded-lg shadow overflow-hidden">
