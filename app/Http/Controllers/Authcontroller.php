@@ -136,21 +136,27 @@ class Authcontroller extends Controller
         return view('pages.auth.loginadmin');
     }
 
-    public function loginmasuk( Request $request){
-        $request->validate([
-            'email'=>'email | required',
-            'password' => 'required'
-        ]);
-        $data = $request->only('email','password');
+public function loginmasuk(Request $request)
+{
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required'
+    ]);
+    
+    $data = $request->only('email', 'password');
 
-       if ( FacadesAuth :: attempt($data)){
+    if (Auth::attempt($data)) {
+        
+        if (!Auth::user()->is_customers) {
             $request->session()->regenerate();
             return redirect()->route('dashboard.show');
-       }
-       else{
-            return redirect()->back()->with('gagal', 'Email atau Password anda salah') ;
-       }
+        }
+        Auth::logout();
+        return redirect()->back()->with('gagal', 'Anda tidak memiliki akses ke panel admin.');
+    } else {
+        return redirect()->back()->with('gagal', 'Email atau Password anda salah');
     }
+}
 
 
 }

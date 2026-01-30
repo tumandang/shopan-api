@@ -41,4 +41,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Annoucement::class);
     }
+
+    public function isAdmin()
+    {
+        return !$this->is_customers;
+    }
+
+    public function isCustomer()
+    {
+        return $this->is_customers;
+    }
 }
